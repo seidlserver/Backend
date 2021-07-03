@@ -2,10 +2,20 @@ package com.seidlserver.scheduled;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seidlserver.SeidlserverApplication;
+import com.seidlserver.message.StateMessage;
+import com.seidlserver.pojos.state.Action;
 import com.seidlserver.pojos.state.State;
 import com.seidlserver.service.StateService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /*
     Created by: Jonas Seidl
@@ -14,25 +24,21 @@ import org.springframework.stereotype.Component;
 */
 @Component
 public class ScheduledTasks {
+    @Autowired
+    private SimpMessagingTemplate template;
 
     private State previousState = null;
-
-    private final StateService stateService;
-
-    public ScheduledTasks(StateService stateService) {
-        this.stateService = stateService;
-    }
 
     @Scheduled(fixedRate = 1000)
     public void checkState() {
         //TODO Check state
-        State s = SeidlserverApplication.state;
-        if(!s.equals(previousState)){
-            try {
-                stateService.sendNewState(s);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+        State state = SeidlserverApplication.state;
+        if(!state.equals(previousState)){
+            StateMessage stateMessage = new StateMessage(Action.INFO, state);
+            Message message = MessageBuilder.withPayload(stateMessage).build();
+            template.send("/server/state", message);
+            previousState = state;
         }
     }
+
 }

@@ -25,8 +25,8 @@ public class StateService {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
-    public void sendNewState(State s) throws JsonProcessingException {
+    public void sendNewState(StateMessage message) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        simpMessagingTemplate.convertAndSend(StateService.DESTINATION, mapper.writeValueAsString(s));
+        simpMessagingTemplate.convertAndSend(StateService.DESTINATION, mapper.writeValueAsString(message));
     }
 }

@@ -51,12 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .cors()
-                .and()
+                //.cors()
+                //.and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, JWTProperties.REGISTER_URL).permitAll()
                 .antMatchers(HttpMethod.GET, "/stats/cpu").permitAll()
-                .antMatchers(HttpMethod.GET, "/stats/mem").permitAll()
+                .antMatchers(HttpMethod.GET, "/stats/cpu").permitAll()
+                .antMatchers("/endpoint/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
@@ -75,12 +76,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    /*@Bean
     CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.applyPermitDefaultValues();
         source.registerCorsConfiguration("/**", config);
         return source;
-    }
+    }*/
 }

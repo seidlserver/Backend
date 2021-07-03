@@ -16,12 +16,12 @@ public class SocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/state");
+        config.enableSimpleBroker("/server");
         config.setApplicationDestinationPrefixes("/server");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/endpoint").setAllowedOrigins("localhost:3000").withSockJS();
+        registry.addEndpoint("/endpoint").setAllowedOrigins("http://localhost:3000").withSockJS();
     }
 }

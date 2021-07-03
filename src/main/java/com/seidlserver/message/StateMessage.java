@@ -1,8 +1,13 @@
 package com.seidlserver.message;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.seidlserver.pojos.state.Action;
+import com.seidlserver.pojos.state.State;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /*
     Created by: Jonas Seidl
@@ -12,6 +17,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StateMessage {
-    private String action;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class StateMessage implements Serializable {
+    private Action action;
+    private State state;
 }
