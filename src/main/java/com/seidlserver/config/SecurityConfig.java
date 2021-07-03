@@ -1,5 +1,9 @@
-package com.seidlserver.security;
+package com.seidlserver.config;
 
+import com.seidlserver.security.JWTAuthenticationFilter;
+import com.seidlserver.security.JWTAuthenticationProvider;
+import com.seidlserver.security.JWTAuthorizationFilter;
+import com.seidlserver.security.JWTProperties;
 import com.seidlserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -31,6 +31,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="Entities" />
           <factory-entry name="entityManagerFactory" />
           <factory-entry name="test" value="45f03b8d-2cf8-4571-828a-31d672b0560d" />
         </datasource-mapping>
@@ -93,7 +94,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-core:3.6.28" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.10.20" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-junit-jupiter:3.6.28" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.skyscreamer:jsonassert:1.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" level="project" />
@@ -133,5 +133,11 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.4.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-config:5.4.5" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-websocket:5.2.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-messaging:5.2.2.RELEASE" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.awaitility:awaitility:3.1.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-library:2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:2.6" level="project" />
   </component>
 </module>
