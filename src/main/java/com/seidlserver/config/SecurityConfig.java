@@ -51,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                //.cors()
-                //.and()
+                .cors()
+                .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, JWTProperties.REGISTER_URL).permitAll()
                 .antMatchers(HttpMethod.GET, "/stats/cpu").permitAll()
@@ -80,7 +80,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.applyPermitDefaultValues();
+        //config.applyPermitDefaultValues();
+        config.setAllowCredentials(true);
         source.registerCorsConfiguration("/**", config);
         return source;
     }
