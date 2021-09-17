@@ -2,8 +2,7 @@ package com.seidlserver.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seidlserver.message.StateMessage;
-import com.seidlserver.pojos.state.State;
+import com.seidlserver.message.StateActionMessage;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -25,7 +24,7 @@ public class StateService {
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
-    public void sendNewState(StateMessage message) throws JsonProcessingException {
+    public void sendNewState(StateActionMessage message) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         simpMessagingTemplate.convertAndSend(StateService.DESTINATION, mapper.writeValueAsString(message));
     }
